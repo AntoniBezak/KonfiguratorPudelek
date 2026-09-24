@@ -126,6 +126,17 @@ const includeLidInput = document.querySelector('#include-lid')
 const container = document.querySelector('#model-container')
 const viewer = document.querySelector('.viewer')
 
+viewer.style.setProperty('position', 'relative', 'important')
+
+orderButton.style.setProperty('position', 'absolute', 'important')
+orderButton.style.setProperty('top', '15px', 'important')
+orderButton.style.setProperty('right', '15px', 'important')
+orderButton.style.setProperty('left', 'auto', 'important')
+orderButton.style.setProperty('bottom', 'auto', 'important')
+orderButton.style.setProperty('margin', '0', 'important')
+orderButton.style.setProperty('transform', 'none', 'important')
+orderButton.style.setProperty('z-index', '10000', 'important')
+
 const WALL_THICKNESS = 2
 
 function renderColorOptions() {
@@ -429,15 +440,6 @@ function resizeRenderer() {
   const width = Math.max(1, Math.round(rect.width))
   const height = Math.max(1, Math.round(rect.height))
 
-  orderButton.style.setProperty('position', 'fixed', 'important')
-  orderButton.style.setProperty('top', '15px', 'important')
-  orderButton.style.setProperty('right', '15px', 'important')
-  orderButton.style.setProperty('left', 'auto', 'important')
-  orderButton.style.setProperty('bottom', 'auto', 'important')
-  orderButton.style.setProperty('margin', '0', 'important')
-  orderButton.style.setProperty('transform', 'none', 'important')
-  orderButton.style.setProperty('z-index', '1000', 'important')
-
   /*
    * Wymuszamy, żeby kontener 3D dokładnie pokrywał
    * widoczny obszar .viewer.
@@ -446,6 +448,7 @@ function resizeRenderer() {
    * liczona bezpośrednio względem okna przeglądarki.
    */
   container.style.setProperty('position', 'fixed', 'important')
+  ontainer.style.setProperty('z-index', '1', 'important')
   container.style.setProperty(
     'left',
     `${Math.round(rect.left)}px`,
