@@ -275,14 +275,27 @@ input {
 
 .viewer {
   position: relative;
-  background: linear-gradient(180deg, #edf2f7 0%, #e2e8f0 100%);
-  height: 100vh;
-  min-height: 0;
+  overflow: hidden;
 }
 
 #model-container {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+
+#model-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.generate-button,
+.order-button,
+.viewer-status {
+  position: relative;
+  z-index: 10;
 }
 
 .viewer-status {

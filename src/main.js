@@ -381,7 +381,7 @@ controls.enableDamping = true
 controls.enablePan = true
 controls.minDistance = 120
 controls.maxDistance = 800
-controls.target.set(100, 0, 0)
+controls.target.set(0, 100, 0)
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.2)
 scene.add(ambientLight)
@@ -406,9 +406,10 @@ function fitModelToView(mesh) {
   controls.target.copy(center)
 
   const cameraOffset = new THREE.Vector3(
-    distance,
-    distance * 5.7,
-    distance * 1.1,
+    distance * 3,
+    distance * 3,
+    distance * 3
+,
   )
 
   camera.position.copy(center).add(cameraOffset)
