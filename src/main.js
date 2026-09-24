@@ -369,7 +369,6 @@ const scene = new THREE.Scene()
 scene.background = new THREE.Color(0xf5f7fb)
 
 const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 2000)
-camera.position.set(230, 180, 260)
 
 const renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -398,34 +397,51 @@ let currentMesh = null
 
 function fitModelToView(mesh) {
   const box = new THREE.Box3().setFromObject(mesh)
+
   const center = box.getCenter(new THREE.Vector3())
   const size = box.getSize(new THREE.Vector3())
-  const maxDimension = Math.max(size.x, size.y, size.z, 1)
-  const distance = maxDimension * 1.8
 
+  const maxDimension = Math.max(size.x, size.y, size.z, 1)
+
+  const distance = maxDimension * 2.2
+
+  // Środek obrotu = dokładny środek modelu
   controls.target.copy(center)
 
-  const cameraOffset = new THREE.Vector3(
-    distance * 3,
-    distance * 3,
-    distance * 3
-,
+  // Kamera patrzy na dokładnie ten sam punkt
+  camera.position.set(
+    center.x + distance,
+    center.y + distance,
+    center.z + distance
   )
 
-  camera.position.copy(center).add(cameraOffset)
   camera.lookAt(center)
+
+  // Ważne: aktualizacja OrbitControls dopiero po ustawieniu
+  // targetu i pozycji kamery
   controls.update()
 }
 
 function resizeRenderer() {
-  const { clientWidth, clientHeight } = container
-  renderer.setSize(clientWidth, clientHeight, false)
-  camera.aspect = clientWidth / clientHeight
+  const width = container.clientWidth
+  const height = container.clientHeight
+
+  if (width === 0 || height === 0) {
+    return
+  }
+
+  renderer.setSize(width, height, false)
+
+  camera.aspect = width / height
   camera.updateProjectionMatrix()
-  renderer.render(scene, camera)
 }
 
-window.addEventListener('resize', resizeRenderer)
+const resizeObserver = new ResizeObserver(() => {
+  resizeRenderer()
+})
+
+resizeObserver.observe(container)
+
 resizeRenderer()
 
 function disposeCurrentMesh() {
@@ -500,10 +516,10 @@ async function renderModel() {
     })
 
     const mesh = new THREE.Mesh(geometry, material)
-    mesh.rotation.x = -Math.PI / 2
-
     const modelRoot = new THREE.Group()
     modelRoot.add(mesh)
+
+    modelRoot.rotation.x = -Math.PI / 2
 
     currentMesh = modelRoot
     scene.add(currentMesh)
