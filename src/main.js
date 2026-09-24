@@ -124,6 +124,7 @@ const lidWallHeightWrapper = document.querySelector('#lid-wall-height-wrapper')
 const lidWallHeightInput = document.querySelector('#lid-wall-height')
 const includeLidInput = document.querySelector('#include-lid')
 const container = document.querySelector('#model-container')
+const viewer = document.querySelector('.viewer')
 
 const WALL_THICKNESS = 2
 
@@ -423,12 +424,79 @@ function fitModelToView(mesh) {
 }
 
 function resizeRenderer() {
-  const width = container.clientWidth
-  const height = container.clientHeight
+  const rect = viewer.getBoundingClientRect()
 
-  if (width === 0 || height === 0) {
-    return
-  }
+  const width = Math.max(1, Math.round(rect.width))
+  const height = Math.max(1, Math.round(rect.height))
+
+  /*
+   * Wymuszamy, żeby kontener 3D dokładnie pokrywał
+   * widoczny obszar .viewer.
+   *
+   * Używamy position: fixed, dzięki czemu pozycja jest
+   * liczona bezpośrednio względem okna przeglądarki.
+   */
+  container.style.setProperty('position', 'fixed', 'important')
+  container.style.setProperty(
+    'left',
+    `${Math.round(rect.left)}px`,
+    'important'
+  )
+  container.style.setProperty(
+    'top',
+    `${Math.round(rect.top)}px`,
+    'important'
+  )
+  container.style.setProperty(
+    'width',
+    `${width}px`,
+    'important'
+  )
+  container.style.setProperty(
+    'height',
+    `${height}px`,
+    'important'
+  )
+
+  container.style.setProperty('margin', '0', 'important')
+  container.style.setProperty('padding', '0', 'important')
+  container.style.setProperty('transform', 'none', 'important')
+  container.style.setProperty('box-sizing', 'border-box', 'important')
+  container.style.setProperty('overflow', 'hidden', 'important')
+
+  /*
+   * Canvas również dostaje dokładnie 100% kontenera.
+   */
+  renderer.domElement.style.setProperty(
+    'position',
+    'absolute',
+    'important'
+  )
+  renderer.domElement.style.setProperty(
+    'left',
+    '0',
+    'important'
+  )
+  renderer.domElement.style.setProperty(
+    'top',
+    '0',
+    'important'
+  )
+  renderer.domElement.style.setProperty(
+    'width',
+    '100%',
+    'important'
+  )
+  renderer.domElement.style.setProperty(
+    'height',
+    '100%',
+    'important'
+  )
+  renderer.domElement.style.setProperty(
+    'display',
+    'block',
+    'important'
+  )
 
   renderer.setSize(width, height, false)
 
@@ -440,7 +508,12 @@ const resizeObserver = new ResizeObserver(() => {
   resizeRenderer()
 })
 
-resizeObserver.observe(container)
+resizeObserver.observe(viewer)
+
+window.addEventListener('resize', resizeRenderer)
+window.addEventListener('scroll', resizeRenderer, {
+  passive: true,
+})
 
 resizeRenderer()
 
