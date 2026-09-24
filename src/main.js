@@ -394,14 +394,34 @@ const rimLight = new THREE.DirectionalLight(0x9bb4ff, 0.9)
 rimLight.position.set(-180, 120, -140)
 scene.add(rimLight)
 
-
 let currentMesh = null
+
+function fitModelToView(mesh) {
+  const box = new THREE.Box3().setFromObject(mesh)
+  const center = box.getCenter(new THREE.Vector3())
+  const size = box.getSize(new THREE.Vector3())
+  const maxDimension = Math.max(size.x, size.y, size.z, 1)
+  const distance = maxDimension * 1.8
+
+  controls.target.copy(center)
+
+  const cameraOffset = new THREE.Vector3(
+    distance,
+    distance * 0.7,
+    distance * 1.1,
+  )
+
+  camera.position.copy(center).add(cameraOffset)
+  camera.lookAt(center)
+  controls.update()
+}
 
 function resizeRenderer() {
   const { clientWidth, clientHeight } = container
   renderer.setSize(clientWidth, clientHeight, false)
   camera.aspect = clientWidth / clientHeight
   camera.updateProjectionMatrix()
+  renderer.render(scene, camera)
 }
 
 window.addEventListener('resize', resizeRenderer)
@@ -413,8 +433,19 @@ function disposeCurrentMesh() {
   }
 
   scene.remove(currentMesh)
-  currentMesh.geometry.dispose()
-  currentMesh.material.dispose()
+  currentMesh.traverse((object) => {
+    if (object.geometry) {
+      object.geometry.dispose()
+    }
+
+    if (object.material) {
+      if (Array.isArray(object.material)) {
+        object.material.forEach((material) => material.dispose())
+      } else {
+        object.material.dispose()
+      }
+    }
+  })
   currentMesh = null
 }
 
@@ -467,11 +498,15 @@ async function renderModel() {
       roughness: 0.42,
     })
 
-    currentMesh = new THREE.Mesh(geometry, material)
-    currentMesh.rotation.x = -Math.PI / 2
-    currentMesh.position.set(0, 0, 0)
-    controls.target.set(0, 0, 0)
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.rotation.x = -Math.PI / 2
+
+    const modelRoot = new THREE.Group()
+    modelRoot.add(mesh)
+
+    currentMesh = modelRoot
     scene.add(currentMesh)
+    fitModelToView(currentMesh)
 
     statusEl.textContent = 'Model gotowy'
   } catch (error) {
