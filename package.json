@@ -1,0 +1,20 @@
+{
+  "name": "konfigurator-pudelek",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "openscad-wasm": "^0.0.4",
+    "three": "^0.169.0"
+  }
+}

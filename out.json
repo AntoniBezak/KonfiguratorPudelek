@@ -1,0 +1,81 @@
+[
+
+{"name":"openscad-wasm","keywords":["OpenSCAD","SCAD-JS"],"version":"0.0.4","description":"Webassembly port of OpenSCAD","sanitized_name":"openscad-wasm","publisher":{"email":"lior@dotcore.co.il","username":"20lives"},"maintainers":[{"email":"lior@dotcore.co.il","username":"20lives"}],"license":"GPL-2.0","date":"2025-07-18T17:21:42.608Z","links":{"npm":"https://www.npmjs.com/package/openscad-wasm"}}
+
+,
+
+{"name":"openscad-playground","keywords":["openscad","cad","3d","modeling","wasm","react","component"],"version":"2.4.0","description":"OpenSCAD in the browser - React component for 3D CAD modeling","sanitized_name":"openscad-playground","publisher":{"email":"reiss.cashmore@outlook.com","username":"reisscashmore"},"maintainers":[{"email":"reiss.cashmore@outlook.com","username":"reisscashmore"}],"license":"GPL-2.0-or-later","date":"2025-12-08T12:57:42.712Z","links":{"repository":"","npm":"https://www.npmjs.com/package/openscad-playground"}}
+
+,
+
+{"name":"openscad-wasm-prebuilt","keywords":["OpenSCAD","3D","WASM"],"version":"1.2.0","description":"WASM build of Openscad","sanitized_name":"openscad-wasm-prebuilt","publisher":{"email":"lorenzo@makermarket.place","username":"lorenzowritescode"},"maintainers":[{"email":"lorenzo@makermarket.place","username":"lorenzowritescode"}],"license":"GPL-2.0-or-later","date":"2025-01-22T22:26:33.056Z","links":{"homepage":"https://github.com/lorenzowritescode/openscad-wasm#readme","repository":"git+https://github.com/lorenzowritescode/openscad-wasm.git","bugs":"https://github.com/lorenzowritescode/openscad-wasm/issues","npm":"https://www.npmjs.com/package/openscad-wasm-prebuilt"}}
+
+,
+
+{"name":"tree-sitter-openscad","keywords":["parser","lexer","openscad"],"version":"0.5.1","description":"OpenSCAD grammar for tree-sitter","sanitized_name":"tree-sitter-openscad","publisher":{"email":"mainbollian@gmail.com","username":"bollian"},"maintainers":[{"email":"mainbollian@gmail.com","username":"bollian"}],"license":"MIT","date":"2024-02-24T21:20:55.979Z","links":{"homepage":"https://github.com/bollian/tree-sitter-openscad#readme","repository":"git+https://github.com/bollian/tree-sitter-openscad.git","bugs":"https://github.com/bollian/tree-sitter-openscad/issues","npm":"https://www.npmjs.com/package/tree-sitter-openscad"}}
+
+,
+
+{"name":"openscad-parser","keywords":[],"version":"0.6.3","description":"[![Node.js CI](https://github.com/alufers/openscad-parser/workflows/Node.js%20CI/badge.svg)](https://github.com/alufers/openscad-parser/actions?query=workflow%3A%22Node.js+CI%22) [![License](https://img.shields.io/github/license/alufers/openscad-parser)](","sanitized_name":"openscad-parser","publisher":{"email":"albert.koczy@gmail.com","username":"alufers"},"maintainers":[{"email":"albert.koczy@gmail.com","username":"alufers"}],"date":"2024-10-27T17:22:25.936Z","links":{"npm":"https://www.npmjs.com/package/openscad-parser"}}
+
+,
+
+{"name":"openscad-generate","keywords":[],"version":"1.4.7","description":"Generate 3D models, animations and images from OpenSCAD files","sanitized_name":"openscad-generate","publisher":{"email":"yannick.battail@gmail.com","actor":{"name":"xcinnay","type":"user","email":"yannick.battail@gmail.com"},"username":"xcinnay"},"maintainers":[{"email":"yannick.battail@gmail.com","username":"xcinnay"}],"license":"LGPL-3.0-or-later","date":"2026-09-07T23:13:12.499Z","links":{"homepage":"https://github.com/yannickbattail/openscad-generate#readme","repository":"git+https://github.com/yannickbattail/openscad-generate.git","bugs":"https://github.com/yannickbattail/openscad-generate/issues","npm":"https://www.npmjs.com/package/openscad-generate"}}
+
+,
+
+{"name":"openscad-cli-wrapper","keywords":[],"version":"1.4.18","description":"wrapper library around openscad","sanitized_name":"openscad-cli-wrapper","publisher":{"email":"yannick.battail@gmail.com","actor":{"name":"xcinnay","type":"user","email":"yannick.battail@gmail.com"},"username":"xcinnay"},"maintainers":[{"email":"yannick.battail@gmail.com","username":"xcinnay"}],"license":"LGPL-3.0-or-later","date":"2026-09-07T22:58:21.535Z","links":{"homepage":"https://github.com/yannickbattail/openscad-cli-wrapper#readme","repository":"git+https://github.com/yannickbattail/openscad-cli-wrapper.git","bugs":"https://github.com/yannickbattail/openscad-cli-wrapper/issues","npm":"https://www.npmjs.com/package/openscad-cli-wrapper"}}
+
+,
+
+{"name":"openscad-mcp-server","keywords":["mcp","modelcontextprotocol","openscad","scad","cad","stl","png","3d"],"version":"1.0.5","description":"An MCP server that renders PNG previews and STL geometry from OpenSCAD (SCAD) source code.","sanitized_name":"openscad-mcp-server","publisher":{"email":"filipeboldo@gmail.com","username":"fboldo"},"maintainers":[{"email":"filipeboldo@gmail.com","username":"fboldo"}],"license":"MIT","date":"2026-02-13T00:54:38.695Z","links":{"homepage":"https://github.com/fboldo/openscad-mcp-server#readme","repository":"git+https://github.com/fboldo/openscad-mcp-server.git","bugs":"https://github.com/fboldo/openscad-mcp-server/issues","npm":"https://www.npmjs.com/package/openscad-mcp-server"}}
+
+,
+
+{"name":"@lofcz/openscad-wasm","keywords":["openscad","wasm","webassembly","cad","3d","stl","3mf","manifold","emscripten"],"version":"0.0.2","description":"OpenSCAD compiled to WebAssembly, with runtime extensions for fonts (text()) and the MCAD library","sanitized_name":"@lofcz/openscad-wasm","publisher":{"email":"npm-oidc-no-reply@github.com","trustedPublisher":{"oidcConfigId":"oidc:***","id":"github"},"username":"GitHub Actions"},"maintainers":[{"email":"lordoffliescz@gmail.com","username":"lofcz"}],"license":"GPL-2.0-only","date":"2026-09-03T01:07:02.987Z","links":{"homepage":"https://github.com/lofcz/openscad-wasm#readme","repository":"git+https://github.com/lofcz/openscad-wasm.git","bugs":"https://github.com/lofcz/openscad-wasm/issues","npm":"https://www.npmjs.com/package/@lofcz/openscad-wasm"}}
+
+,
+
+{"name":"@openscad/tree-sitter-openscad","keywords":["parser","lexer","openscad"],"version":"0.6.1","description":"OpenSCAD grammar for tree-sitter","sanitized_name":"@openscad/tree-sitter-openscad","publisher":{"email":"mkatych@gmail.com","username":"micks"},"maintainers":[{"email":"mkatych@gmail.com","username":"micks"}],"license":"MIT","date":"2025-05-29T19:41:33.724Z","links":{"homepage":"https://github.com/openscad/tree-sitter-openscad#readme","repository":"git+https://github.com/openscad/tree-sitter-openscad.git","bugs":"https://github.com/openscad/tree-sitter-openscad/issues","npm":"https://www.npmjs.com/package/@openscad/tree-sitter-openscad"}}
+
+,
+
+{"name":"jscad-scad-api","keywords":["openscad","bridge","library","api","jscad"],"version":"3.0.6","description":"JSCAD bridge for OpenSCAD designs","sanitized_name":"jscad-scad-api","publisher":{"email":"z3-dev@gfnews.net","username":"z3dev"},"maintainers":[{"email":"z3-dev@gfnews.net","username":"z3dev"}],"license":"MIT","date":"2026-09-05T00:34:15.653Z","links":{"homepage":"https://github.com/jscad-community/jscad-scad-api#readme","repository":"git+https://github.com/jscad-community/jscad-scad-api.git","bugs":"https://github.com/jscad-community/jscad-scad-api/issues","npm":"https://www.npmjs.com/package/jscad-scad-api"}}
+
+,
+
+{"name":"@lofcz/streamdown-openscad","keywords":[],"version":"0.2.0","description":"OpenSCAD model plugin for Streamdown","sanitized_name":"@lofcz/streamdown-openscad","publisher":{"email":"npm-oidc-no-reply@github.com","trustedPublisher":{"oidcConfigId":"oidc:***","id":"github"},"username":"GitHub Actions"},"maintainers":[{"email":"lordoffliescz@gmail.com","username":"lofcz"}],"license":"Apache-2.0","date":"2026-09-02T23:40:24.021Z","links":{"homepage":"https://github.com/lofcz/streamdown-ng#readme","repository":"git+https://github.com/lofcz/streamdown-ng.git","bugs":"https://github.com/lofcz/streamdown-ng/issues","npm":"https://www.npmjs.com/package/@lofcz/streamdown-openscad"}}
+
+,
+
+{"name":"@holistic-stack/openscad-parser","keywords":["openscad","parser","ast","tree-sitter","typescript"],"version":"0.1.2","description":"TypeScript parser for OpenSCAD using tree-sitter","sanitized_name":"@holistic-stack/openscad-parser","publisher":{"email":"holisticstack@gmail.com","username":"holistic-stack-user"},"maintainers":[{"email":"holisticstack@gmail.com","username":"holistic-stack-user"}],"license":"MIT","date":"2025-06-10T01:56:45.323Z","links":{"npm":"https://www.npmjs.com/package/@holistic-stack/openscad-parser"}}
+
+,
+
+{"name":"openscad-mcp","keywords":["mcp","openscad","cad","3d-printing","model-context-protocol"],"version":"1.0.0","description":"MCP server for OpenSCAD - 3D CAD modeling via AI assistants","sanitized_name":"openscad-mcp","publisher":{"email":"dkpoulsen@proton.me","username":"dkpoulsen"},"maintainers":[{"email":"dkpoulsen@proton.me","username":"dkpoulsen"}],"license":"MIT","date":"2026-02-25T17:44:28.622Z","links":{"homepage":"https://github.com/dkpoulsen/openscad-mcp#readme","repository":"git+https://github.com/dkpoulsen/openscad-mcp.git","bugs":"https://github.com/dkpoulsen/openscad-mcp/issues","npm":"https://www.npmjs.com/package/openscad-mcp"}}
+
+,
+
+{"name":"@bascanada/openscad-compiler","keywords":[],"version":"0.0.5","description":"Single interface to compile OpenScad file to STL. In node using openscad-wasm or native binary and in the browser using openscad-wasm with a web worker","sanitized_name":"@bascanada/openscad-compiler","publisher":{"email":"william95quintalwilliam@outlook.com","username":"berlingoqc"},"maintainers":[{"email":"william95quintalwilliam@outlook.com","username":"berlingoqc"}],"license":"GPL-3.0-only","date":"2025-08-17T19:17:24.632Z","links":{"npm":"https://www.npmjs.com/package/@bascanada/openscad-compiler"}}
+
+,
+
+{"name":"@bobfrankston/wallplater","keywords":[],"version":"1.0.11","description":"JSON-driven wall-plate generator (Decora / duplex / blank). Direct-to-3MF via manifold-3d, with an optional OpenSCAD engine.","sanitized_name":"@bobfrankston/wallplater","publisher":{"email":"npm@bob.ma","username":"bobfrankston"},"maintainers":[{"email":"npm@bob.ma","username":"bobfrankston"}],"date":"2026-09-10T20:10:16.368Z","links":{"homepage":"https://github.com/BobFrankston/wallplater#readme","repository":"git+ssh://git@github.com/BobFrankston/wallplater.git","bugs":"https://github.com/BobFrankston/wallplater/issues","npm":"https://www.npmjs.com/package/@bobfrankston/wallplater"}}
+
+,
+
+{"name":"openrscad-engine","keywords":["openscad","scad","cad","wasm","webassembly","geometry","csg","3d","mesh","openrscad"],"version":"0.14.0","description":"Fast OpenSCAD-compatible geometry engine (OpenRSCAD) compiled to WebAssembly — parse .scad source and render solid 3D meshes in the browser or Node.","sanitized_name":"openrscad-engine","publisher":{"email":"npm-oidc-no-reply@github.com","trustedPublisher":{"oidcConfigId":"oidc:***","id":"github"},"username":"GitHub Actions"},"maintainers":[{"email":"matthova87@gmail.com","username":"matthova"}],"license":"Apache-2.0 OR MIT","date":"2026-09-01T15:04:37.326Z","links":{"homepage":"https://matthova.github.io/openrscad","repository":"git+https://github.com/matthova/openrscad.git","bugs":"https://github.com/matthova/openrscad/issues","npm":"https://www.npmjs.com/package/openrscad-engine"}}
+
+,
+
+{"name":"@holistic-stack/tree-sitter-openscad","keywords":["parser","tree-sitter","openscad","grammar","syntax","highlighting","incremental","parsing","3d","cad"],"version":"0.1.0","description":"Tree-sitter grammar for OpenSCAD","sanitized_name":"@holistic-stack/tree-sitter-openscad","publisher":{"email":"holisticstack@gmail.com","username":"holistic-stack-user"},"maintainers":[{"email":"holisticstack@gmail.com","username":"holistic-stack-user"}],"license":"MIT","date":"2025-06-10T01:31:19.301Z","links":{"npm":"https://www.npmjs.com/package/@holistic-stack/tree-sitter-openscad"}}
+
+,
+
+{"name":"openscad-poly-tools","keywords":["OpenSCAD","polyhedron","simplify","cleanup","CAD","3D","Printing"],"version":"0.10.1","description":"OpenSCAD Polyhedron Tools","sanitized_name":"openscad-poly-tools","publisher":{"email":"samuel.rouse@gmail.com","username":"oculus42"},"maintainers":[{"email":"samuel.rouse@gmail.com","username":"oculus42"}],"license":"MIT","date":"2018-12-15T18:33:35.577Z","links":{"homepage":"https://github.com/oculus42/openscad-poly-tools#readme","repository":"git+https://github.com/oculus42/openscad-poly-tools.git","bugs":"https://github.com/oculus42/openscad-poly-tools/issues","npm":"https://www.npmjs.com/package/openscad-poly-tools"}}
+
+,
+
+{"name":"unittestscad","keywords":["unit","test","openscad"],"version":"3.0.3","description":"UnitTestSCAD: Unit Testing for OpenSCAD","sanitized_name":"unittestscad","publisher":{"email":"jonlaw10170@gmail.com","username":"hopefulllama"},"maintainers":[{"email":"jonlaw10170@gmail.com","username":"hopefulllama"}],"license":"MIT","date":"2018-09-27T14:15:43.259Z","links":{"homepage":"https://github.com/HopefulLlama/UnitTestSCAD#readme","repository":"git+https://github.com/HopefulLlama/UnitTestSCAD.git","bugs":"https://github.com/HopefulLlama/UnitTestSCAD/issues","npm":"https://www.npmjs.com/package/unittestscad"}}
+]
+
