@@ -337,3 +337,10 @@ canvas {
     height: 100%;
   }
 }
+
+#order-box {
+  position: fixed !important;
+  top: 15px !important;
+  right: 15px !important;
+  z-index: 1000 !important;
+}
