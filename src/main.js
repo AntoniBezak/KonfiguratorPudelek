@@ -407,7 +407,7 @@ function fitModelToView(mesh) {
 
   const cameraOffset = new THREE.Vector3(
     distance,
-    distance * 0.7,
+    distance * 5.7,
     distance * 1.1,
   )
 
