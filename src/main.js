@@ -448,7 +448,7 @@ function resizeRenderer() {
    * liczona bezpośrednio względem okna przeglądarki.
    */
   container.style.setProperty('position', 'fixed', 'important')
-  ontainer.style.setProperty('z-index', '1', 'important')
+  container.style.setProperty('z-index', '1', 'important')
   container.style.setProperty(
     'left',
     `${Math.round(rect.left)}px`,
