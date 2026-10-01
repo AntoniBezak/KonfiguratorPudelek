@@ -25,22 +25,22 @@ app.innerHTML = `
       <form id="config-form" class="form">
         <label>
           <span>Długość (mm)</span>
-          <input id="length" name="length" type="number" min="20" step="1" value="200" />
+          <input id="length" name="length" type="number" min="20" max="210" step="1" value="200" />
         </label>
 
         <label>
           <span>Szerokość (mm)</span>
-          <input id="width" name="width" type="number" min="20" step="1" value="120" />
+          <input id="width" name="width" type="number" min="20" max="210" step="1" value="120" />
         </label>
 
         <label>
           <span>Głębokość (mm)</span>
-          <input id="depth" name="depth" type="number" min="20" step="1" value="100" />
+          <input id="depth" name="depth" type="number" min="10" max="100" step="1" value="100" />
         </label>
 
         <label>
           <span>Średnica zaokrąglenia rogów (mm)</span>
-          <input id="corner-diameter" name="corner-diameter" type="number" min="0" step="1" value="0" />
+          <input id="corner-diameter" name="corner-diameter" type="number" min="2" max="20" step="1" value="2" />
         </label>
 
         <label>
@@ -55,7 +55,7 @@ app.innerHTML = `
 
         <label>
           <span>Wysokość ścian przegród (mm)</span>
-          <input id="partition-wall-height" name="partition-wall-height" type="number" min="10" step="1" value="100" />
+          <input id="partition-wall-height" name="partition-wall-height" type="number" min="5" max="100" step="1" value="100" />
         </label>
 
         <div id="partition-info" class="partition-info">Wymiary przegródki: 0 × 0 mm</div>
@@ -69,7 +69,7 @@ app.innerHTML = `
           <div id="lid-wall-height-wrapper" class="lid-wall-height-wrapper" hidden>
             <label>
               <span>Wysokość ścian pokrywy (mm)</span>
-              <input id="lid-wall-height" name="lid-wall-height" type="number" min="2" step="1" value="12" />
+              <input id="lid-wall-height" name="lid-wall-height" type="number" min="5" max="100" step="1" value="12" />
             </label>
           </div>
         </div>
@@ -163,12 +163,47 @@ function syncLidControls() {
   lidWallHeightWrapper.hidden = isChecked
 }
 
+function syncDepthDependentRanges() {
+  const depth = Number(depthInput.value)
+  const maxHeight = Math.max(5, Number.isFinite(depth) && depth > 0 ? depth : 10)
+  partitionWallHeightInput.max = String(maxHeight)
+  lidWallHeightInput.max = String(maxHeight)
+}
+
+function clampInputToRange(input) {
+  const minimum = Number(input.min)
+  const maximum = input.max === '' ? Infinity : Number(input.max)
+  const value = Number(input.value)
+  const safeValue = Number.isFinite(value) ? value : minimum
+
+  input.value = String(Math.min(maximum, Math.max(minimum, safeValue)))
+}
+
+function normalizeConfigurationInputs() {
+  const independentInputs = [
+    lengthInput,
+    widthInput,
+    depthInput,
+    cornerDiameterInput,
+    partitionsLengthInput,
+    partitionsWidthInput,
+  ]
+  independentInputs.forEach(clampInputToRange)
+
+  syncDepthDependentRanges()
+
+  const dependentInputs = [partitionWallHeightInput, lidWallHeightInput]
+  dependentInputs.forEach(clampInputToRange)
+}
+
 function getSelectedColorName() {
   const selected = AVAILABLE_COLORS.find(({ value }) => value === state.selectedColor)
   return selected ? selected.name : 'Niebieski'
 }
 
 function buildOrderCode() {
+  normalizeConfigurationInputs()
+
   const length = Number(lengthInput.value) || 0
   const width = Number(widthInput.value) || 0
   const depth = Number(depthInput.value) || 0
@@ -260,15 +295,15 @@ function buildBoxScad({
   includeLid = false,
   cornerDiameter = 0,
 }) {
-  const safeLength = Math.max(20, Number(length) || 20)
-  const safeWidth = Math.max(20, Number(width) || 20)
-  const safeDepth = Math.max(20, Number(depth) || 20)
+  const safeLength = Math.min(210, Math.max(20, Number(length) || 20))
+  const safeWidth = Math.min(210, Math.max(20, Number(width) || 20))
+  const safeDepth = Math.min(100, Math.max(10, Number(depth) || 10))
   const safePartitionsLength = Math.max(0, Math.floor(Number(partitionsLength) || 0))
   const safePartitionsWidth = Math.max(0, Math.floor(Number(partitionsWidth) || 0))
-  const safePartitionWallHeight = Math.max(0, Math.min(safeDepth, Number(partitionWallHeight) || safeDepth))
-  const safeLidWallHeight = Math.max(2, Number(lidWallHeight) || 12)
+  const safePartitionWallHeight = Math.max(5, Math.min(safeDepth, Number(partitionWallHeight) || 5))
+  const safeLidWallHeight = Math.max(5, Math.min(safeDepth, Number(lidWallHeight) || 12))
   const lidEnabled = Boolean(includeLid)
-  const safeCornerDiameter = Math.max(0, Number(cornerDiameter) || 0)
+  const safeCornerDiameter = Math.min(20, Math.max(2, Number(cornerDiameter) || 2))
 
   const innerLength = Math.max(0, safeLength - 2 * wallThickness)
   const innerWidth = Math.max(0, safeWidth - 2 * wallThickness)
@@ -560,6 +595,8 @@ function disposeCurrentMesh() {
 }
 
 async function renderModel() {
+  normalizeConfigurationInputs()
+
   const values = {
     length: Number(lengthInput.value),
     width: Number(widthInput.value),
@@ -637,6 +674,17 @@ partitionsLengthInput.addEventListener('input', () => {
 partitionsWidthInput.addEventListener('input', () => {
   partitionInfoEl.textContent = getPartitionCellSize()
 })
+depthInput.addEventListener('input', syncDepthDependentRanges)
+;[
+  lengthInput,
+  widthInput,
+  depthInput,
+  cornerDiameterInput,
+  partitionsLengthInput,
+  partitionsWidthInput,
+  partitionWallHeightInput,
+  lidWallHeightInput,
+].forEach((input) => input.addEventListener('change', normalizeConfigurationInputs))
 partitionWallHeightInput.addEventListener('input', () => {
   partitionInfoEl.textContent = getPartitionCellSize()
 })
@@ -659,6 +707,7 @@ window.addEventListener('keydown', (event) => {
 })
 
 syncLidControls()
+normalizeConfigurationInputs()
 partitionInfoEl.textContent = getPartitionCellSize()
 renderColorOptions()
 renderModel()
