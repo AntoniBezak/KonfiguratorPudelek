@@ -138,6 +138,11 @@ orderButton.style.setProperty('transform', 'none', 'important')
 orderButton.style.setProperty('z-index', '10000', 'important')
 
 const WALL_THICKNESS = 2
+const ALLEGRO_OFFER_URLS = {
+  small: '',
+  medium: '',
+  large: '',
+}
 
 function renderColorOptions() {
   colorPicker.innerHTML = ''
@@ -238,10 +243,36 @@ function closeOrderModal() {
   orderModal.hidden = true
 }
 
-const ALLEGRO_ORDER_TEXT = 'Ten przycisk będzie przenosił kupującego do odpowiedniego wariantu mojej oferty na Allegro. Oferta jeszcze nie istnieje, dlatego ten przycisk na razie nic nie robi.'
+function getAllegroOfferSize(length, width, depth) {
+  const fitsSmallFootprint = length < 100 && width < 100
+
+  if (fitsSmallFootprint && depth < 50) {
+    return 'small'
+  }
+
+  if (fitsSmallFootprint && depth > 50) {
+    return 'medium'
+  }
+
+  return 'large'
+}
 
 function handleAllegroOrder() {
-  window.alert(ALLEGRO_ORDER_TEXT)
+  normalizeConfigurationInputs()
+
+  const offerSize = getAllegroOfferSize(
+    Number(lengthInput.value),
+    Number(widthInput.value),
+    Number(depthInput.value)
+  )
+  const offerUrl = ALLEGRO_OFFER_URLS[offerSize]
+
+  if (!offerUrl) {
+    window.alert('Brak linku do wybranej oferty Allegro.')
+    return
+  }
+
+  window.location.href = offerUrl
 }
 
 function getPartitionCellSize() {
