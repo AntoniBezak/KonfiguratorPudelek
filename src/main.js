@@ -283,6 +283,14 @@ function buildBoxScad({
 
   const wallSegmentsLength = safePartitionsLength + 1
   const wallSegmentsWidth = safePartitionsWidth + 1
+  const partitionCellLength = Math.max(
+    0,
+    (innerLength - safePartitionsLength * wallThickness) / wallSegmentsLength
+  )
+  const partitionCellWidth = Math.max(
+    0,
+    (innerWidth - safePartitionsWidth * wallThickness) / wallSegmentsWidth
+  )
 
   const outerBoxLength = safeLength
   const outerBoxWidth = safeWidth
@@ -300,12 +308,12 @@ function buildBoxScad({
   let partitionCode = ''
 
   for (let index = 1; index <= safePartitionsLength; index += 1) {
-    const x = wallThickness + ((innerLength * index) / wallSegmentsLength)
+    const x = wallThickness + partitionCellLength * index + wallThickness * (index - 1)
     partitionCode += `translate([${x.toFixed(2)}, ${wallThickness}, 0]) cube([${wallThickness}, ${innerWidth.toFixed(2)}, ${partitionDepth.toFixed(2)}]);\n`
   }
 
   for (let index = 1; index <= safePartitionsWidth; index += 1) {
-    const y = wallThickness + ((innerWidth * index) / wallSegmentsWidth)
+    const y = wallThickness + partitionCellWidth * index + wallThickness * (index - 1)
     partitionCode += `translate([${wallThickness}, ${y.toFixed(2)}, 0]) cube([${innerLength.toFixed(2)}, ${wallThickness}, ${partitionDepth.toFixed(2)}]);\n`
   }
 
