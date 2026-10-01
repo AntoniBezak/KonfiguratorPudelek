@@ -7,12 +7,14 @@ import { createOpenSCAD } from 'openscad-wasm'
 const app = document.querySelector('#app')
 
 const AVAILABLE_COLORS = [
-  { name: 'Niebieski', value: '#3e80eb' },
-  { name: 'Czerwony', value: '#cb3030' },
-  { name: 'Zielony', value: '#22c55e' },
-  { name: 'Szary', value: '#64748b' },
-  { name: 'Czarny', value: '#111827' },
-  { name: 'Beżowy', value: '#d6a26a' },
+  { name: 'Niebieski', value: '#030303' },
+  { name: 'Czerwony', value: '#fbf8f8' },
+  { name: 'Zielony', value: '#f60404' },
+  { name: 'Szary', value: '#047bfa' },
+  { name: 'Czarny', value: '#808181' },
+  { name: 'Beżowy', value: '#d0af8b' },
+  { name: 'Beżowy', value: '#2b5719' },
+  { name: 'Beżowy', value: '#e4722a' },
 ]
 
 const state = {
