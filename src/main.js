@@ -605,6 +605,80 @@ window.addEventListener('scroll', resizeRenderer, {
 
 resizeRenderer()
 
+function createDimensionLabelSprite(text, options = {}) {
+  const {
+    background = 'rgba(255, 255, 255, 0.9)',
+    color = '#0f172a',
+    fontSize = 26,
+  } = options
+
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+  const paddingX = 30
+  const paddingY = 16
+
+  context.font = `700 ${fontSize}px Inter, Segoe UI, sans-serif`
+  const textWidth = context.measureText(text).width
+  const width = textWidth + paddingX * 2
+  const height = fontSize + paddingY * 2
+
+  canvas.width = width
+  canvas.height = height
+
+  context.clearRect(0, 0, canvas.width, canvas.height)
+  context.fillStyle = background
+  context.strokeStyle = 'rgba(15, 23, 42, 0.12)'
+  context.lineWidth = 2
+
+  const radius = 18
+  context.beginPath()
+  context.moveTo(radius, 0)
+  context.lineTo(canvas.width - radius, 0)
+  context.quadraticCurveTo(canvas.width, 0, canvas.width, radius)
+  context.lineTo(canvas.width, canvas.height - radius)
+  context.quadraticCurveTo(canvas.width, canvas.height, canvas.width - radius, canvas.height)
+  context.lineTo(radius, canvas.height)
+  context.quadraticCurveTo(0, canvas.height, 0, canvas.height - radius)
+  context.lineTo(0, radius)
+  context.quadraticCurveTo(0, 0, radius, 0)
+  context.closePath()
+  context.fill()
+  context.stroke()
+
+  context.fillStyle = color
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.font = `700 ${fontSize}px Inter, Segoe UI, sans-serif`
+  context.fillText(text, canvas.width / 2, canvas.height / 2)
+
+  const texture = new THREE.CanvasTexture(canvas)
+  texture.needsUpdate = true
+
+  const material = new THREE.SpriteMaterial({
+    map: texture,
+    transparent: true,
+    depthTest: false,
+    depthWrite: false,
+  })
+
+  const sprite = new THREE.Sprite(material)
+  sprite.scale.set(width * 0.08, height * 0.08, 1)
+  return sprite
+}
+
+function addDimensionLabels(modelRoot, dimensions) {
+  const lengthLabel = createDimensionLabelSprite('Długość')
+  lengthLabel.position.set(0, dimensions.y * 0.52, dimensions.z * 0.64)
+  lengthLabel.rotation.x = -Math.PI / 2
+  modelRoot.add(lengthLabel)
+
+  const widthLabel = createDimensionLabelSprite('Szerokość')
+  widthLabel.position.set(dimensions.x * 0.6, dimensions.y * 0.52, 0)
+  widthLabel.rotation.y = Math.PI / 2
+  widthLabel.rotation.x = -Math.PI / 2
+  modelRoot.add(widthLabel)
+}
+
 function disposeCurrentMesh() {
   if (!currentMesh) {
     return
@@ -681,6 +755,10 @@ async function renderModel() {
     const mesh = new THREE.Mesh(geometry, material)
     const modelRoot = new THREE.Group()
     modelRoot.add(mesh)
+
+    const bounds = new THREE.Box3().setFromObject(mesh)
+    const size = bounds.getSize(new THREE.Vector3())
+    addDimensionLabels(modelRoot, size)
 
     modelRoot.rotation.x = -Math.PI / 2
 
