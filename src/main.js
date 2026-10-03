@@ -673,9 +673,8 @@ function addDimensionLabels(modelRoot, dimensions) {
   modelRoot.add(lengthLabel)
 
   const widthLabel = createDimensionLabelSprite('Szerokość')
-  widthLabel.position.set(dimensions.x * 0.6, dimensions.y * 0.52, 0)
+  widthLabel.position.set(dimensions.x * 0.64, dimensions.y * 0.52, 0)
   widthLabel.rotation.y = Math.PI / 2
-  widthLabel.rotation.x = -Math.PI / 2
   modelRoot.add(widthLabel)
 }
 
