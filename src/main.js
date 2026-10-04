@@ -141,7 +141,7 @@ orderButton.style.setProperty('z-index', '10000', 'important')
 
 const WALL_THICKNESS = 2
 const ALLEGRO_OFFER_URLS = {
-  small: '',
+  small: 'https://allegro.pl/oferta/18982875137',
   medium: '',
   large: '',
 }
