@@ -142,8 +142,8 @@ orderButton.style.setProperty('z-index', '10000', 'important')
 const WALL_THICKNESS = 2
 const ALLEGRO_OFFER_URLS = {
   small: 'https://allegro.pl/oferta/18982875137',
-  medium: '',
-  large: '',
+  medium: 'https://allegro.pl/oferta/18984085432',
+  large: 'https://allegro.pl/oferta/pudelko-na-wymiar-z-przegrodkami-personalizowane-co-do-1-mm-18990256523',
 }
 
 function renderColorOptions() {
